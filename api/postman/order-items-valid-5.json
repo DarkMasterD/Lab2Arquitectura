@@ -1,0 +1,32 @@
+[
+  {
+    "order_id": 1,
+    "product_id": 1,
+    "quantity": 1,
+    "subtotal": 10.00
+  },
+  {
+    "order_id": 2,
+    "product_id": 2,
+    "quantity": 2,
+    "subtotal": 40.00
+  },
+  {
+    "order_id": 3,
+    "product_id": 3,
+    "quantity": 3,
+    "subtotal": 90.00
+  },
+  {
+    "order_id": 4,
+    "product_id": 4,
+    "quantity": 4,
+    "subtotal": 160.00
+  },
+  {
+    "order_id": 5,
+    "product_id": 5,
+    "quantity": 5,
+    "subtotal": 250.00
+  }
+]

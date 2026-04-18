@@ -1,0 +1,106 @@
+{
+  "info": {
+    "_postman_id": "d8f7d6f6-0a9c-4f4e-9b5a-0d8c1a2d7f11",
+    "name": "Ecommerce API",
+    "description": "Colección para probar healthcheck y creación de order_items con validación de subtotal.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Healthcheck",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Report - Total Sold By Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/reports/total-sold-by-category",
+          "host": ["{{baseUrl}}"],
+          "path": ["reports", "total-sold-by-category"]
+        },
+        "description": "Consulta comparativa. Ejecuta primero con DB_DIALECT=mysql y luego con DB_DIALECT=postgres para comparar resultados entre motores."
+      },
+      "response": []
+    },
+    {
+      "name": "Create Order Item - Valid",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"order_id\": 1,\n  \"product_id\": 1,\n  \"quantity\": 2,\n  \"subtotal\": 20.00\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/order-items",
+          "host": ["{{baseUrl}}"],
+          "path": ["order-items"]
+        },
+        "description": "Inserta un order_item válido. El subtotal debe ser price * quantity."
+      },
+      "response": []
+    },
+    {
+      "name": "Create Order Item - Runner Row",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"order_id\": {{order_id}},\n  \"product_id\": {{product_id}},\n  \"quantity\": {{quantity}},\n  \"subtotal\": {{subtotal}}\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/order-items",
+          "host": ["{{baseUrl}}"],
+          "path": ["order-items"]
+        },
+        "description": "Request parametrizado para ejecutar cinco inserciones válidas desde Collection Runner."
+      },
+      "response": []
+    },
+    {
+      "name": "Create Order Item - Invalid Subtotal",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"order_id\": 1,\n  \"product_id\": 1,\n  \"quantity\": 2,\n  \"subtotal\": 15.00\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/order-items",
+          "host": ["{{baseUrl}}"],
+          "path": ["order-items"]
+        },
+        "description": "Fuerza el error del hook/trigger porque el subtotal no coincide con price * quantity."
+      },
+      "response": []
+    }
+  ]
+}

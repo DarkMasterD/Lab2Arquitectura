@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 node_modules/
 postgres_data/
 .env/
 mysql_data/
 POSTMAN.md/
+=======
+.env
+mysql_data/
+postgres_data/
+>>>>>>> 480fdcfe570e1d560f0494c5ffae59a93f11f1b9
